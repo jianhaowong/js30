@@ -20,7 +20,7 @@
 <style type="text/css">
     html {
   font-size: 10px;
-  background: url(http://i.imgur.com/b9r5sEL.jpg) bottom center;
+  /*background: url(http://i.imgur.com/b9r5sEL.jpg) bottom center;*/
   background-size: cover;
 }
 body,html {
@@ -126,16 +126,31 @@ kbd {
 <script>
 
     // window.addEventListener('keydown', e => console.log(e.keyCode));
-    window.addEventListener('keydown',function(e){
+    window.addEventListener('keydown',playaudio);
 
-        // keyCode事件属性:http://www.runoob.com/jsref/event-key-keycode.html
-        console.log(e.keyCode);
+    function playaudio(e){
 
-        const
+        console.log(e.keyCode);// keyCode事件属性:http://www.runoob.com/jsref/event-key-keycode.html
+
+        const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`); // 等於'<audio  data-key="' + e.keyCode + '">'+'</div>'
+        const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+
+        if(!audio){
+
+          return
+
+        }
+
+        audio.currentTime = 0;//將音樂重置 currentTime指定秒數達到連發效果
 
 
+        audio.play();//播放
 
-    })
+        key.classList.add('playing');
+
+        let 
+
+    }
 
 </script>
 </html>
