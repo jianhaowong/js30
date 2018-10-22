@@ -148,7 +148,24 @@ kbd {
 
         key.classList.add('playing');
 
-        let 
+        
+
+    }
+
+    let  keys = document.querySelectorAll('.key');
+
+
+    keys.forEach(key => key.addEventListener('transitionend',removeTransitionI));
+
+
+
+    function removeTransitionI(e){
+
+      if(e.propertyName !== 'transform') return;
+
+      this.classList.remove('playing')
+
+
 
     }
 

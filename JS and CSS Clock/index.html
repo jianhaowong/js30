@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <title></title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:image" content="">
+    <meta property="og:title" content="">
+    <meta property="og:description" content="">
+    <meta property="og:url" content="" />
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<style type="text/css">
+ html {
+     /* background:#018DED url(http://unsplash.it/1500/1000?image=881&blur=50);*/
+      background-size:cover;
+      font-family:'helvetica neue';
+      text-align: center;
+      font-size: 10px;
+    }
+
+    body {
+      margin: 0;
+      font-size: 2rem;
+      display:flex;
+      flex:1;
+      min-height: 100vh;
+      align-items: center;
+    }
+
+    .clock {
+      width: 30rem;
+      height: 30rem;
+      border:20px solid white;
+      border-radius:50%;
+      margin:50px auto;
+      position: relative;
+      padding:2rem;
+      box-shadow:
+        0 0 0 4px rgba(0,0,0,0.1),
+        inset 0 0 0 3px #EFEFEF,
+        inset 0 0 10px black,
+        0 0 10px rgba(0,0,0,0.2);
+    }
+
+    .clock-face {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform: translateY(-3px); /* account for the height of the clock hands */
+    }
+
+    .hand {
+      width:50%;
+      height:6px;
+      background:black;
+      position: absolute;
+      top:50%;
+      transform: rotate(90deg);
+      transform-origin: 100%;
+      transition-timing-function: all .05s;
+    }
+
+</style>
+<body>
+    <div class="clock">
+      <div class="clock-face">
+        <div class="hand hour-hand"></div>
+        <div class="hand min-hand"></div>
+        <div class="hand second-hand"></div>
+      </div>
+    </div>
+</body>
+<script>
+    const secondhand = document.querySelector('.second-hand');
+    const minhand = document.querySelector('.min-hand');
+    const hourhand = document.querySelector('.hour-hand');
+    function setDate(){
+        const now = new Date();
+        //當下時間
+        
+        const second = now.getSeconds();
+        //用getSeconds()取出"秒"的值
+        
+        const secondsDegrees = ((second / 60) * 360) +90;
+
+        secondhand.style.transform = `rotate(${secondsDegrees}deg)`;
+
+        const mins = now.getMinutes();
+
+        const minDegrees = ((mins / 60) * 360) +90;
+
+        minhand.style.transform = `rotate(${minDegrees}deg)`;
+
+        const hours = now.getHours();
+
+        const hoursDegrees = ((hours / 12) * 360)+90;
+
+        hourhand.style.transform = `rotate(${hoursDegrees}deg)`;
+
+
+    }
+
+    setInterval(setDate,1000);
+
+</script>
+</html>
